@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Password Live</title>
+
+    <meta charset="utf-8" lang="en" />
+    <meta name="description" content="Password Live is a generator of complex and secure passwords that you never need to remember!" />
+    <meta name="keywords" content="password,live,generator" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta property="og:title" content="Password Live" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://passwordlive.github.io" />
+    <meta property="og:image" content="http://passwordlive.github.io/Content/gfx/password-live-image.png" />
+    <meta property="og:site_name" content="Password Live" />
+    <meta property="og:description" content="Password Live is a generator of complex and secure passwords that you never need to remember!" />
+
+    <link rel="shortcut icon" href="Content/icons/favicon.ico" sizes="16x16 32x32 64x64" type="image/vnd.microsoft.icon" />
+    <link rel="icon" href="Content/icons/iphone.png" sizes="57x57" type="image/png" />
+    <link rel="icon" href="Content/icons/favicon.png" sizes="16x16" type="image/png" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700" rel="stylesheet" type="text/css" />
+    <link href="Content/StyleSheet.css" rel="stylesheet" type="text/css" media="screen"/>
+<!--
+    <script src="/Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/modernizr-1.7.min.js" type="text/javascript"></script>
+    <script src="/Scripts/respond.min.js" type="text/javascript"></script>
+    <script src="/Scripts/maxlength.js" type="text/javascript"></script>
+
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="https://apis.google.com/js/plusone.js" type="text/javascript"></script>
+-->
+    <script src="Scripts/jQuery/jquery-1.11.0.min.js"></script>
+
+    <script src="Scripts/CryptoJS/components/core-min.js"></script>
+    <script src="Scripts/CryptoJS/components/enc-base64-min.js"></script>
+    <script src="Scripts/CryptoJS/rollups/sha256.js"></script>
+    <!-- hint: there is also a C# version (PasswordLive.cs) available under this location: -->
+    <script src="Scripts/PasswordLive/PasswordLive.js"></script>
+
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            }
+
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+
+            if (errorType == "ImageError" ||
+                errorType == "MediaError") {
+                return;
+            }
+
+            var errMsg = "Unhandled Error in Silverlight Application "
+                + appSource + "\n";
+
+            errMsg += "Code: " + iErrorCode + "    \n";
+            errMsg += "Category: " + errorType + "       \n";
+            errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError") {
+                errMsg += "File: " + args.xamlFile + "     \n";
+                errMsg += "Line: " + args.lineNumber + "     \n";
+                errMsg += "Position: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError") {
+                if (args.lineNumber != 0) {
+                    errMsg += "Line: " + args.lineNumber + "     \n";
+                    errMsg += "Position: " + args.charPosition +
+                        "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+
+            throw new Error(errMsg);
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var PasswordForm = $("#form0");
+
+            var keywordField = $("#SecretKeyword");
+            var whatForField = $("#WhatFor");
+            var lengthField = $("#Length");
+            var UpperCaseButton = $("#UpperCase");
+            var LowerCaseButton = $("#LowerCase");
+            var NumbersButton = $("#Numbers");
+            var SpecialCharactersButton = $("#SpecialCharacters");
+            var GenerateButton = $("#GenerateButton");
+            var ResultField = $("#Result");
+
+            var keywordString = "";
+            var whatForString = "";
+            var length = 15;
+            var MakeUpperCase = false;
+            var MakeLowerCase = false;
+            var MakeNumbers = false;
+            var MakeSpecialCharacters = false;
+
+            PasswordForm.submit(function(e){
+                e.preventDefault();
+
+                keywordString = keywordField.val();
+                whatForString = whatForField.val();
+                length = +(lengthField.val());
+                MakeUpperCase = UpperCaseButton.is(":checked");
+                MakeLowerCase = LowerCaseButton.is(":checked");
+                MakeNumbers = NumbersButton.is(":checked");
+                MakeSpecialCharacters = SpecialCharactersButton.is(":checked");
+                ResultField.val(PasswordLive.Compute(keywordString, whatForString, length, MakeUpperCase, MakeLowerCase, MakeNumbers, MakeSpecialCharacters));
+
+            });
+        });
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="Scripts/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<!--    <div id="fb-root"></div>-->
+    <div id="container">
+    <header>
+        <a href="/" id="no-screen"><h1>Password Live</h1></a>
+        <a href="/"><h1>     </h1></a>
+        <h2>No more forgotten passwords!</h2>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a class="current" href="/">Home</a></li>
+            <li><a href="Support.html">FAQ and Support</a></li>
+            <li><a href="Desktop.html">Desktop version (PC or Mac)</a></li>
+            <li><a href="WindowsPhone.html">Windows Phone</a></li>
+            <li><span>Android <em>(soon!)</em></span></li>
+        </ul>
+    </nav>
+    <hr />
+    <div id="container2">
+    <section>
+        <div>
+        <h3>
+            Password Live gives you access to unique and very strong passwords
+            for all your Internet needs by using just ONE permanent "keyword"
+            and typing what it is for!
+        </h3>
+        <form id="form0" action="" method="get" autocomplete="off">
+                <p class="generator-p">
+                    <span class="generator-block">
+                    Secret keyword<br />
+                    <input autofocus="autofocus" id="SecretKeyword" name="SecretKeyword" tabindex="1" type="password" autocomplete="off" required/><br />
+                    </span>
+                    <span class="description">
+                        The secret keyword can be anything you'd like, but it's better to make
+                        it harder to guess. This is the only piece of information that you
+                        have to keep safe and all your passwords will be based on it.
+                    </span>
+                    <span class="clearboth"></span>
+                </p>
+                <p class="generator-p">
+                    <span class="generator-block">
+                    What for?<br />
+                    <input id="WhatFor" name="WhatFor" tabindex="2" type="text" autocomplete="off" required/><br />
+                    </span>
+                    <span class="description">
+                        This is the name of the service you generate the password for, for
+                        example name it <span>facebook</span>, <span>gmail</span>, <span>skype</span>, <span>yahoo</span>, <span>amazon</span>, <span>github</span> or
+                        anything else.
+                    </span>
+                    <span class="clearboth"></span>
+                </p>
+                <p class="generator-p">
+                    <span class="generator-block">
+                        Length (8-64)<br />
+                        <input id="Length" name="Length" tabindex="3" type="number" value="15" min="8" max="64" required/>  <br />
+
+                        <span class="checkboxes">
+                        <input checked="checked" data-val="true" data-val-required="The UpperCase field is required." id="UpperCase" name="UpperCase" type="checkbox" value="true" /><input name="UpperCase" type="hidden" value="false" /> Upper Case<br />
+                        <input checked="checked" data-val="true" data-val-required="The LowerCase field is required." id="LowerCase" name="LowerCase" type="checkbox" value="true" /><input name="LowerCase" type="hidden" value="false" /> Lower Case<br />
+                        <input checked="checked" data-val="true" data-val-required="The Numbers field is required." id="Numbers" name="Numbers" type="checkbox" value="true" /><input name="Numbers" type="hidden" value="false" /> Numbers<br />
+                        <input checked="checked" data-val="true" data-val-required="The SpecialCharacters field is required." id="SpecialCharacters" name="SpecialCharacters" type="checkbox" value="true" /><input name="SpecialCharacters" type="hidden" value="false" /> Special Characters<br />
+                        </span>
+                    </span>
+                    <span class="description">
+                        There are several options to amend the complexity of the passwords,
+                        for example you can make it shorter (15 characters by default) or turn
+                        off special characters.
+                    </span>
+                    <span class="clearboth"></span>
+                </p>
+                <p class="generate-button-area generator-p">
+                    <span class="generator-block">
+                        <input type="submit" id="GenerateButton" value="Generate Password" class="button" tabindex="4"  />
+                    </span>
+                    <span class="description">
+                        Click here to generate your unique password. The result will always be
+                        based on the keyword and the 'what for' values that you provide.
+                    </span>
+                    <span class="clearboth"></span>
+                </p>
+                <p class="generator-p">
+                    <span class="generator-block">
+                        Result<br />
+                        <input id="Result" name="Result" type="text" tabindex="5" value="" autocomplete="off"/><br />
+                    </span>
+                    <span class="description">
+                            The result will be a strong and unique password that you never need to remember!
+                    </span>
+                    <span class="clearboth"></span>
+                </p>
+        </form>
+        </div>
+    </section>
+    <footer>
+        <hr>
+        <div id="footer-container">
+            <div class="bitcoin">
+                <script src="Scripts/Coinwidget/coin.js"></script>
+                <script>
+                CoinWidgetCom.go({
+                    wallet_address: "1mikeGbp2cRBzsBtZtT2k3FX3byPmCR8N"
+                    , currency: "bitcoin"
+                    , counter: "hide"
+                    , alignment: "ar"
+                    , qrcode: true
+                    , auto_show: false
+                    , lbl_button: "Donate"
+                    , lbl_address: "Bitcoin Address:"
+                    , lbl_count: ""
+                    , lbl_amount: ""
+                });
+                </script>
+            </div>
+            <a href="https://twitter.com/PasswordLive" class="twitter-follow-button" data-show-count="true">Follow @PasswordLive</a>
+            <script>                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+        </div>
+    </footer>
+    </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
