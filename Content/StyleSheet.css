@@ -227,7 +227,7 @@ nav li {
     margin-top: 20px;
 }
 
-nav li a, nav li span {
+nav li a {
     margin: 2px 3px;
     float: left;
     padding: 1px 5px;
@@ -720,7 +720,7 @@ figure {
         padding: 0.4em;
     }
 
-    nav li a, nav li span {
+    nav li a {
         margin: 2px 3px;
         padding: 0.5em 1em;
         -moz-border-radius: 4px;
@@ -981,18 +981,6 @@ figure {
 
 .validation-summary-valid {
     display: none;
-}
-<!-- TEST -->
-
-input {
-    border: 1px solid #f51818;
-    background-color: #ffa0a0;
-    color: #a80000;
-    background: linear-gradient(top, #ffa0a0, #ffdada);
-    background: -webkit-linear-gradient(top, Red, Red) !important;
-    background: -moz-linear-gradient(top, #ffa0a0, #ffdada);
-    background: -ms-linear-gradient(top, #ffa0a0, #ffdada);
-    background: -o-linear-gradient(top, #ffa0a0, #ffdada);
 }
 
 
