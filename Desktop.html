@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Password Live - Desktop version (PC or Mac)</title>
+
+    <meta charset="utf-8" lang="en" />
+    <meta name="description" content="Password Live is a generator of complex and secure passwords that you never need to remember!" />
+    <meta name="keywords" content="password,live,generator" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta property="og:title" content="Password Live" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://passwordlive.github.io" />
+    <meta property="og:image" content="http://passwordlive.github.io/Content/gfx/password-live-image.png" />
+    <meta property="og:site_name" content="Password Live" />
+    <meta property="og:description" content="Password Live is a generator of complex and secure passwords that you never need to remember!" />
+
+    <link rel="shortcut icon" href="Content/icons/favicon.ico" sizes="16x16 32x32 64x64" type="image/vnd.microsoft.icon" />
+    <link rel="icon" href="Content/icons/iphone.png" sizes="57x57" type="image/png" />
+    <link rel="icon" href="Content/icons/favicon.png" sizes="16x16" type="image/png" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700" rel="stylesheet" type="text/css" />
+    <link href="Content/StyleSheet.css" rel="stylesheet" type="text/css" media="screen"/>
+
+    <script src="Scripts/jQuery/jquery-1.11.0.min.js"></script>
+    <script src="Scripts/Modernizr/modernizr-1.7.min.js"></script>
+
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            }
+
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+
+            if (errorType == "ImageError" ||
+                errorType == "MediaError") {
+                return;
+            }
+
+            var errMsg = "Unhandled Error in Silverlight Application "
+                + appSource + "\n";
+
+            errMsg += "Code: " + iErrorCode + "    \n";
+            errMsg += "Category: " + errorType + "       \n";
+            errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError") {
+                errMsg += "File: " + args.xamlFile + "     \n";
+                errMsg += "Line: " + args.lineNumber + "     \n";
+                errMsg += "Position: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError") {
+                if (args.lineNumber != 0) {
+                    errMsg += "Line: " + args.lineNumber + "     \n";
+                    errMsg += "Position: " + args.charPosition +
+                        "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+
+            throw new Error(errMsg);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="Scripts/html5shiv/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="container">
+    <header>
+        <a href="/" id="no-screen"><h1>Password Live</h1></a>
+        <a href="/"><h1>     </h1></a>
+        <h2>Desktop version (PC or Mac)</h2>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Support.html">FAQ and Support</a></li>
+            <li><a class="current" href="Desktop.html">Desktop version (PC or Mac)</a></li>
+            <li><a href="WindowsPhone.html">Windows Phone</a></li>
+            <li><a href="http://github.com/passwordlive/passwordlive.github.io"><span>Source code <em>(on GitHub)</em></span></a></li>
+        </ul>
+    </nav>
+    <hr />
+    <div id="container2">
+    <section>
+        <h3>Using PC or Mac? You can use Password Live on your desktop as well!</h3>
+        <div id="desktop-version-container">
+            <p>
+                Desktop version of Password Live is extremely lightweight and easy to install. You can see what it looks like right here in the picture:
+            </p>
+            <figure>
+                <img src="Content/gfx/password-live-desktop-version.gif" alt="Screenshot showing Password Live installed on the desktop" />
+                <figcaption>Screenshot - desktop version of Password Live</figcaption>
+            </figure>
+            <hr />
+            <h3 class="lbl">
+                Key features
+            </h3>
+            <div class="clear"></div>
+            <div id="key-features-helper">
+                <ul id="key-features">
+                    <li>It's free</li>
+                    <li>Easy to use</li>
+                    <li>No advertisements or pushy content</li>
+                    <li>No Internet connection necessary</li>
+                    <li>The result can be copied to the clipboard with just one mouse click</li>
+                    <li>You can pin it to the taskbar on the PC or keep it in the dock on the Mac</li>
+                    <li>Weighs only 311KB!</li>
+                </ul>
+            </div>
+            <div class="clearboth"></div>
+        </div>
+        <hr />
+        <h3 id="InstallationGuide" class="lbl">Installation guide</h3>
+        <p id="InstallationGuideInfo">
+            The desktop version of Password Live requires Microsoft Silverlight
+            installed on your computer. Silverlight is a small browser plug-in
+            like Adobe Flash. The three easy steps below will guide you through
+            the installation process:
+        </p>
+        <ol start="1" class="InstallationGuideSteps">
+            <li><span>Please make sure you have Microsoft Silverlight installed by visiting <a href="https://www.microsoft.com/getsilverlight" class="link">www.microsoft.com/getsilverlight</a>.</span></li>
+            <li><span>Once Silverlight is present, you should also see the Password Live application in the window below. If you can't see it after the installation is complete, then please restart your browser.</span></li>
+        </ol>
+
+        <div id="silverlightControlHost">
+            <object width="360" height="260"
+                type="application/x-silverlight-2"
+                data="data:application/x-silverlight-2," >
+                <param name="source" value="Content/bin/PasswordLive.xap"/>
+                <param name="onerror" value="onSilverlightError" />
+                <param name="background" value="white" />
+                <param name="minRuntimeVersion" value="4.0.60310.0" />
+                <param name="autoUpgrade" value="true" />
+                <a href="https://go.microsoft.com/fwlink/?LinkID=149156&amp;v=4.0.60310.0"
+                    style="text-decoration: none;">
+                    <img src="Content/gfx/SLMedallion_ENU.png" alt="Get Microsoft Silverlight" style="border-style:none"/>
+                </a>
+            </object>
+            <iframe id="_sl_historyFrame" src="Content/Blank.html"
+                style='visibility:hidden;height:0px;width:0px;border:0px'>
+            </iframe>
+        </div>
+
+        <ol start="3" class="InstallationGuideSteps">
+            <li><span>Now right-click (ctrl-click on the Mac) on the window with the green border above and select 'Install Password Live onto this computer'.</span></li>
+        </ol>
+
+        <div id="gratz">
+        Congratulations! Password Live is now installed on your desktop computer!
+        </div>
+    </section>
+    <footer>
+        <hr>
+        <div id="footer-container">
+            <div class="bitcoin">
+                <script src="Scripts/Coinwidget/coin.js"></script>
+                <script>
+                CoinWidgetCom.go({
+                    wallet_address: "1mikeGbp2cRBzsBtZtT2k3FX3byPmCR8N"
+                    , currency: "bitcoin"
+                    , counter: "hide"
+                    , alignment: "ar"
+                    , qrcode: true
+                    , auto_show: false
+                    , lbl_button: "Donate"
+                    , lbl_address: "Bitcoin Address:"
+                    , lbl_count: ""
+                    , lbl_amount: ""
+                });
+                </script>
+            </div>
+            <a href="https://twitter.com/PasswordLive" class="twitter-follow-button" data-show-count="true">Follow @PasswordLive</a>
+            <script>                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+        </div>
+    </footer>
+    </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
