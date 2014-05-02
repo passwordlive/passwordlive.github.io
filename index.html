@@ -21,6 +21,7 @@
     <link href="Content/StyleSheet.css" rel="stylesheet" type="text/css" media="screen"/>
 
     <script src="Scripts/jQuery/jquery-1.11.0.min.js"></script>
+    <script src="Scripts/Modernizr/modernizr-1.7.min.js"></script>
 
     <script src="Scripts/CryptoJS/components/core-min.js"></script>
     <script src="Scripts/CryptoJS/components/enc-base64-min.js"></script>
@@ -28,46 +29,6 @@
 
     <!-- hint: there is also a C# version (PasswordLive.cs) available under this location: -->
     <script src="Scripts/PasswordLive/PasswordLive.js"></script>
-
-    <script type="text/javascript">
-        function onSilverlightError(sender, args) {
-            var appSource = "";
-            if (sender != null && sender != 0) {
-                appSource = sender.getHost().Source;
-            }
-
-            var errorType = args.ErrorType;
-            var iErrorCode = args.ErrorCode;
-
-            if (errorType == "ImageError" ||
-                errorType == "MediaError") {
-                return;
-            }
-
-            var errMsg = "Unhandled Error in Silverlight Application "
-                + appSource + "\n";
-
-            errMsg += "Code: " + iErrorCode + "    \n";
-            errMsg += "Category: " + errorType + "       \n";
-            errMsg += "Message: " + args.ErrorMessage + "     \n";
-
-            if (errorType == "ParserError") {
-                errMsg += "File: " + args.xamlFile + "     \n";
-                errMsg += "Line: " + args.lineNumber + "     \n";
-                errMsg += "Position: " + args.charPosition + "     \n";
-            }
-            else if (errorType == "RuntimeError") {
-                if (args.lineNumber != 0) {
-                    errMsg += "Line: " + args.lineNumber + "     \n";
-                    errMsg += "Position: " + args.charPosition +
-                        "     \n";
-                }
-                errMsg += "MethodName: " + args.methodName + "     \n";
-            }
-
-            throw new Error(errMsg);
-        }
-    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -109,12 +70,11 @@
     </script>
 
     <!--[if lt IE 9]>
-    <script src="Scripts/html5shiv.js"></script>
+    <script src="Scripts/html5shiv/html5shiv.js"></script>
     <![endif]-->
 
 </head>
 <body>
-<!--    <div id="fb-root"></div>-->
     <div id="container">
     <header>
         <a href="/" id="no-screen"><h1>Password Live</h1></a>
@@ -128,7 +88,7 @@
             <li><a href="Support.html">FAQ and Support</a></li>
             <li><a href="Desktop.html">Desktop version (PC or Mac)</a></li>
             <li><a href="WindowsPhone.html">Windows Phone</a></li>
-                        <li><a href="http://github.com/passwordlive/passwordlive.github.io"><span>Source code <em>(on GitHub)</em></span></a></li>
+            <li><a href="http://github.com/passwordlive/passwordlive.github.io"><span>Source code <em>(on GitHub)</em></span></a></li>
         </ul>
     </nav>
     <hr />
