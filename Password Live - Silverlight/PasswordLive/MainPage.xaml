@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="PasswordLive.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input" xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data" xmlns:System="clr-namespace:System;assembly=mscorlib"             
+    mc:Ignorable="d" HorizontalContentAlignment="Left" OpacityMask="#FFE80000" Visibility="Visible" Background="#FF960000" BorderBrush="#FF00CAD4" Foreground="#FFF80A8D" IsEnabled="True" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" Opacity="1" FontSize="11" d:DesignHeight="234" d:DesignWidth="356">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="TextBoxBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFECECEC" Offset="1" />
+            <GradientStop Color="White" Offset="0.341" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="MainBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF0A1E00" Offset="0.83" />
+            <GradientStop Color="#FF277901" Offset="0" />
+            <GradientStop Color="#FF184E01" Offset="0.548" />
+            <GradientStop Color="#FF0A0F00" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource MainBackground}" Opacity="1" Height="Auto" Width="Auto" x:Name="GradientBackground" >
+        <Grid x:Name="LayoutRoot" Height="225" Width="350" Background="#1B000000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <dataInput:Label Height="14" HorizontalAlignment="Left" Margin="8,26,0,0" x:Name="labelSecretKeyword" VerticalAlignment="Top" Width="100" Content="Secret keyword:" Foreground="White" />
+            <TextBox Height="30" HorizontalAlignment="Left" Margin="8,90,0,0" x:Name="textBoxWhatFor" VerticalAlignment="Top" Width="183" BorderThickness="0" TabIndex="2" Background="{StaticResource TextBoxBackground}" TextChanged="textBoxWhatFor_TextChanged" MaxLength="32" FontSize="16" Foreground="#FF353535" BorderBrush="#FFEB9D19" />
+            <dataInput:Label Content="What for?" Height="14" HorizontalAlignment="Left" Margin="8,74,0,0" x:Name="labelWhatFor" VerticalAlignment="Top" Width="100" Foreground="White" />
+            <TextBox BorderThickness="0" Height="30" HorizontalAlignment="Left" Margin="8,179,0,0" x:Name="textBoxResult" VerticalAlignment="Top" Width="183" Background="{StaticResource TextBoxBackground}" IsEnabled="True" MaxLength="64" IsReadOnly="True" Foreground="#FF353535" FontSize="16" />
+            <dataInput:Label Content="Result" Height="14" HorizontalAlignment="Left" Margin="8,162,0,0" x:Name="labelResult" VerticalAlignment="Top" Width="100" Foreground="White" />
+            <Border BorderBrush="Silver" BorderThickness="0" Height="140" HorizontalAlignment="Left" Margin="201,42,0,0" x:Name="borderSettings" VerticalAlignment="Top" Width="138" CornerRadius="5" Background="#41000000">
+                <Grid Height="140" x:Name="gridSettings" Width="138">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30*" />
+                        <RowDefinition Height="30*" />
+                        <RowDefinition Height="30*" />
+                        <RowDefinition Height="30*" />
+                        <RowDefinition Height="14*" />
+                        <RowDefinition Height="16*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="146" />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Upper Case" Height="16" HorizontalAlignment="Left" Margin="7,15,0,0" x:Name="checkBoxUpperCase" VerticalAlignment="Top" TabIndex="4" Width="133" Foreground="White" IsChecked="True" Cursor="Hand" Click="checkBoxUpperCase_Click" Grid.RowSpan="2" />
+                    <CheckBox Content="Lower Case" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="7,12,0,0" x:Name="checkBoxLowerCase" VerticalAlignment="Top" TabIndex="5" Width="133" Foreground="White" IsChecked="True" Cursor="Hand" Click="checkBoxLowerCase_Click" />
+                    <CheckBox Content="Numbers" Grid.Row="2" Height="16" HorizontalAlignment="Left" Margin="7,8,0,0" x:Name="checkBoxNumbers" VerticalAlignment="Top" TabIndex="6" Width="133" Foreground="White" IsChecked="True" Cursor="Hand" Click="checkBoxNumbers_Click" />
+                    <CheckBox Content="Special Characters" Grid.Row="3" Height="16" HorizontalAlignment="Left" Margin="7,5,0,0" x:Name="checkBoxSpecialCharacters" VerticalAlignment="Top" TabIndex="7" Width="133" Foreground="White" IsChecked="True" Cursor="Hand" Click="checkBoxSpecialCharacters_Click" />
+                    <TextBox Grid.Row="4" Height="20" HorizontalAlignment="Left" Margin="7,0,0,0" x:Name="textBoxLength" VerticalAlignment="Top" Width="42" TabIndex="8" BorderThickness="0" Text="15" Grid.RowSpan="2" MaxLength="2" TextChanged="textBoxLength_TextChanged" Background="{StaticResource TextBoxBackground}" LostFocus="textBoxLength_LostFocus" TextAlignment="Center" />
+                    <dataInput:Label Content="Length (8-64)" Height="22" HorizontalAlignment="Left" Margin="54,2,0,0" x:Name="labelLength" VerticalAlignment="Top" Width="86" Grid.Row="4" Foreground="White" Grid.RowSpan="2" />
+                </Grid>
+            </Border>
+            <PasswordBox Height="30" HorizontalAlignment="Left" Margin="8,42,0,0" x:Name="passwordBoxKeyword" VerticalAlignment="Top" Width="183" BorderThickness="0" Background="{StaticResource TextBoxBackground}" PasswordChanged="passwordBoxKeyword_PasswordChanged" MaxLength="32" TabIndex="1" FontSize="16" Foreground="#FF353535" BorderBrush="#FFEB9D19"/>
+            <Button Content="Copy Result to Clipboard" Height="30" HorizontalAlignment="Left" Margin="8,130,0,0" x:Name="buttonCopyResult" VerticalAlignment="Top" Width="183" Background="#FF21FF00" BorderThickness="0" UseLayoutRounding="True" Click="buttonCopyResult_Click" TabIndex="3" IsEnabled="True" BorderBrush="Black" FontWeight="Normal" Cursor="Hand" />
+            <Border BorderThickness="0" Height="25" x:Name="borderWindowControl" VerticalAlignment="Top" CornerRadius="0,0,20,0" Margin="0" HorizontalAlignment="Left" Width="130">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF91EC29" Offset="0" />
+                        <GradientStop Color="#FF69C400" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Canvas Height="Auto" x:Name="canvasWindowControl" Width="Auto">
+                    <Ellipse Canvas.Left="37" Canvas.Top="2" Height="20" x:Name="ellipseMinimize" StrokeThickness="0" Width="20" OpacityMask="Black">
+                        <Ellipse.Fill>
+                            <RadialGradientBrush>
+                                <GradientStop Color="#FFFFB200" Offset="0.712" />
+                                <GradientStop Color="Transparent" Offset="0.813" />
+                                <GradientStop Color="#FFFFDE00" Offset="0.295" />
+                                <GradientStop Color="#FF58AA02" Offset="0.93" />
+                            </RadialGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <dataInput:Label Canvas.Left="59" Canvas.Top="2" Height="19" x:Name="labelMinimize" Width="55" Content="minimize" Foreground="#FF53960A" FontStyle="Italic" />
+                    <Ellipse ToolTipService.ToolTip="Close" Cursor="Hand" Height="20" x:Name="ellipseClose" OpacityMask="Black" StrokeThickness="0" Width="20" Canvas.Left="6" Canvas.Top="2" MouseLeftButtonDown="ellipseClose_MouseLeftButtonDown">
+                        <Ellipse.Fill>
+                            <RadialGradientBrush>
+                                <GradientStop Color="#FF9F9F9F" Offset="0.732" />
+                                <GradientStop Color="Transparent" Offset="0.759" />
+                                <GradientStop Color="#FFC8C8C8" Offset="0.372" />
+                                <GradientStop Color="#FF449D07" Offset="0.923" />
+                            </RadialGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Rectangle ToolTipService.ToolTip="Minimize" Canvas.Left="32" Canvas.Top="2" Height="20" x:Name="rectangleMinimize" StrokeThickness="0" Width="90" MouseLeftButtonDown="rectangleMinimize_MouseLeftButtonDown" Cursor="Hand" Fill="#00000000"/>
+                </Canvas>
+            </Border>
+            <Image HorizontalAlignment="Left" Margin="145,9,0,0" x:Name="image1" Stretch="None" VerticalAlignment="Top" Source="./gfx/logo.png" />
+            <HyperlinkButton Content="passwordlive.github.io" Height="18" HorizontalAlignment="Center" Margin="201,187,11,20" x:Name="hyperlinkButtonOpenHomepage" VerticalAlignment="Center" Width="138" Foreground="#FF226901" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" NavigateUri="http://passwordlive.github.io/" TargetName="_blank" />
+        </Grid>
+    </Grid>
+</UserControl>
