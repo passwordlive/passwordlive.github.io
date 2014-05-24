@@ -1,0 +1,135 @@
+﻿<phone:PhoneApplicationPage x:Name="PhoneAppPage"
+    x:Class="PasswordLive.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape"  Orientation="Landscape"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="Password Live">
+            <controls:Pivot.Background>
+                <ImageBrush Stretch="Fill" x:Name="background_ImageBrush"/>
+            </controls:Pivot.Background>
+            <!--Pivot item one-->
+            <controls:PivotItem Header="generator">
+                <ScrollViewer VerticalContentAlignment="Top">
+                <Grid x:Name="generator_Grid">
+                        <Rectangle Margin="0,312,0,0" Name="options_rectangle" Stroke="Transparent" StrokeThickness="0" />
+                        <TextBlock Height="30" Margin="10,0,0,0" x:Name="secretKeyword_TextBlock" VerticalAlignment="Top" />
+                        <PasswordBox Margin="0,30,0,0" x:Name="secretKeyword_passwordBox" Padding="2" Height="72" VerticalAlignment="Top" PasswordChanged="secretKeyword_passwordBox_PasswordChanged" MaxLength="32" TabIndex="0" LostFocus="secretKeyword_passwordBox_LostFocus" />
+                        <TextBlock Height="30" Margin="10,102,0,0" Text="What for?" VerticalAlignment="Top" />
+                        <TextBox Margin="0,132,0,0" x:Name="whatFor_textBox" Padding="2" Height="72" VerticalAlignment="Top" TextChanged="whatFor_textBox_TextChanged" MaxLength="32" TabIndex="1" />
+                        <TextBlock Height="30" Margin="10,204,0,0" Text="Result" VerticalAlignment="Top" />
+                        <TextBox Text="" Margin="0,234,0,0" x:Name="result_textBox" Padding="2" Height="72" VerticalAlignment="Top" IsReadOnly="False" GotFocus="result_textBox_GotFocus" TabIndex="3" TextChanged="result_textBox_TextChanged" MaxLength="64" />
+                        <CheckBox Content="Upper Case" Width="250" HorizontalAlignment="Left" Margin="0,312,0,0" Name="upperCase_checkBox" Height="72" VerticalAlignment="Top" FontSize="20" IsChecked="True" Click="upperCase_checkBox_Click" TabIndex="4" />
+                        <CheckBox Content="Lower Case" Width="250" HorizontalAlignment="Left" Margin="0,379,0,0" Name="lowerCase_checkBox" Height="72" VerticalAlignment="Top" FontSize="20" IsChecked="True" Click="lowerCase_checkBox_Click" TabIndex="5" />
+                        <CheckBox Content="Numbers" Width="250" Height="72" HorizontalAlignment="Left" Margin="0,443,0,0" Name="numbers_checkBox" VerticalAlignment="Top" FontSize="20" IsChecked="True" Click="numbers_checkBox_Click" TabIndex="6" />
+                        <CheckBox Content="Special Characters" Height="72" HorizontalAlignment="Left" Margin="0,509,0,0" Name="specialCharacters_checkBox" VerticalAlignment="Top" FontSize="20" IsChecked="True" Click="specialCharacters_checkBox_Click" TabIndex="7" />
+                        <TextBox Height="72" Margin="267,379,0,0" Name="length_textBox" Text="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" LostFocus="length_textBox_LostFocus" TextChanged="length_textBox_TextChanged" TabIndex="8" MaxLength="2" />
+                        <TextBlock Height="56" Margin="280,321,0,0" Name="length_textBlock" VerticalAlignment="Top" TextWrapping="NoWrap" Width="176" HorizontalAlignment="Left">
+                            Length
+                            <LineBreak/>
+                            (8-64, Default: 15)
+                        </TextBlock>
+                        <Button Content="Reset" Height="105" HorizontalAlignment="Left" Margin="267,499,0,0" Name="reset_Button" VerticalAlignment="Top" Width="187" TabIndex="9" Click="reset_Button_Click" />
+                        <!--Double line list with text wrapping
+                <ListBox x:Name="FirstListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                          <StackPanel Margin="0,0,0,17" Width="432">
+                              <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                              <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                          </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                -->
+                    
+                </Grid>
+                </ScrollViewer>
+            </controls:PivotItem>
+ 
+            <!--Pivot item two-->
+            <controls:PivotItem Header="about">
+                <ScrollViewer VerticalContentAlignment="Top" VerticalScrollBarVisibility="Visible">
+                    <Grid x:Name="about_Grid">
+                        
+                        <TextBlock TextWrapping="Wrap">
+                        Password Live generates strong passwords which you don't have to save anywhere.                                 
+                        <LineBreak/><LineBreak/>
+                        The tool is extremely simple to use, but the way to understand it may
+                        pose some challenges initially.
+                        <LineBreak/><LineBreak/>
+                        <Run Text="The " /><Run FontWeight="Bold" Foreground="Black" Text="secret keyword"/>
+                        <Run Text=" field is the place to type in your unique phrase to use across the system. It is the only piece of information that you have to remember and keep safe." />
+                        <LineBreak/><LineBreak/>
+                        <Run Text="The " /><Run FontWeight="Bold" Foreground="Black" Text="what for?"/>
+                        <Run Text=" field is the name of the service you want to have the password for. For example: facebook, gmail, skype, yahoo, amazon etc."/>
+                        <LineBreak/><LineBreak/>
+                        <Run Text="The " /><Run FontWeight="Bold" Foreground="Black" Text="result"/>
+                        <Run Text=" field will automatically show the password based on the above data. The result will always be the same with the 'secret keyword' and the 'what for' value you provide." />    
+                        <LineBreak/><LineBreak/>
+                        You can use this tool to secure your various accounts across the
+                        Internet with very strong passwords that no one can guess. You only
+                        have to remember one secret keyword and then have access to all your
+                        passwords at all times.
+                        <LineBreak/><LineBreak/>
+                        You can also test the web-based application at www.passwordlive.com and use
+                        the free versions for the Mac or PC.
+                        <LineBreak/><LineBreak/>
+                        <Run TextDecorations="Underline" Text="More information about the hash algorithm:"/> 
+                        <LineBreak/><LineBreak/>
+                        Password Live uses the SHA-256 cryptographic hash function.
+                        <LineBreak/><LineBreak/>
+                        The passwords are the hashed result of the 'secret keyword' and the
+                        'what for' value.
+                        <LineBreak/><LineBreak/>
+                        There is no possibility to decipher the secret keyword, but I'd still
+                        advise to use a complicated phrase to keep the level of security at
+                        the maximum eliminating a lucky guess or dictionary attack.
+                        </TextBlock>
+                    </Grid>
+                </ScrollViewer>
+            </controls:PivotItem>
+
+            <!--Pivot item three-->
+            <controls:PivotItem Header="settings">
+                <Grid>
+                    <CheckBox Content="Allow horizontal view"  HorizontalAlignment="Left" Margin="0,0,0,0" Name="landscape_CheckBox" Height="72" VerticalAlignment="Top" FontSize="20" IsChecked="True" Click="landscape_CheckBox_Click" />
+                    <CheckBox Content="Remember my secret keyword!"  HorizontalAlignment="Left" Margin="0,92,0,0" Name="rememberKeyword_CheckBox" Height="72" VerticalAlignment="Top" FontSize="20" IsChecked="False" Click="rememberKeyword_CheckBox_Click" />
+                    <TextBlock HorizontalAlignment="Left" Margin="10,160,0,0" Name="rememberKeyword_textBlock" VerticalAlignment="Top" TextWrapping="Wrap">
+                        Please be aware the option above could be dangerous. Someone else
+                        could be able to generate your passwords if they got access to your
+                        phone. There is also a theoretical risk of extracting the secret keyword from
+                        the phone's memory in case of landing in the wrong hands.
+                    </TextBlock>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
